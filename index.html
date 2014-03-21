@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <header>
+      <nav>{{#link-to 'index'}}Home{{/link-to}}</nav>
+    </header>
+    <h1>Welcome to Quiz Master</h1>
+    {{#link-to 'quizzes'}}The Quizzes{{/link-to}}
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <h1>This is the homepage</h1>
+  </script>
+
+  <script type="text/x-handlebars" id="quizzes">
+    <h1>The Quizzes</h1>
+    {{#each}}
+      <li>{{#link-to 'quiz' this}}{{name}}{{/link-to}}</li>
+    {{/each}}
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="quiz">
+    <h1>{{name}}</h1>
+    <p>{{description}}</p>
+    <p>Your Current Score: {{currentScore}}</p>
+    {{#each questions}}
+      {{#link-to 'question' this}}{{id}}{{/link-to}}
+    {{/each}}
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="quiz/index">
+    <h1>Start the Quiz</h1>
+    {{#link-to 'question' firstQuestion.id tag="button"}}boom{{/link-to}}
+  </script>
+
+  <script type="text/x-handlebars" id="question">
+    <h2>{{question}}</h2>
+    {{#each answers}}
+      <li {{action 'answered' this model}}>{{answer}}</li>
+    {{/each}}
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.4.0.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/fixtures.js"></script>
+</body>
+</html>
