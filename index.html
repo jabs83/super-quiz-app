@@ -35,6 +35,7 @@
     {{#each questions}}
       {{#link-to 'question' this}}{{id}}{{/link-to}}
     {{/each}}
+    {{lastQuestion}}
     {{outlet}}
   </script>
 
@@ -48,6 +49,7 @@
     {{#each answers}}
       <li {{action 'answered' this model}}>{{answer}}</li>
     {{/each}}
+    {{currentQuestion}}
   </script>
 
   <script src="js/libs/jquery-1.10.2.js"></script>
